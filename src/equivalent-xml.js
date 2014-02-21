@@ -1,6 +1,8 @@
 //= require underscore.js
 
 EquivalentXml = (function(){
+  var namedNodeMap = (window.NamedNodeMap || window.MozNamedAttrMap || {});
+
   var canonical_name = function(node){
     return node.namespaceURI + ':' + node.localName;
   };
@@ -38,7 +40,7 @@ EquivalentXml = (function(){
     var nodelist_2 = as_nodelist(node_2.childNodes, opts);
     var result = compare_nodelists(nodelist_1, nodelist_2, opts);
 
-    if(node_1.attributes instanceof NamedNodeMap){
+    if(node_1.attributes instanceof namedNodeMap){
       var attributes_1 = _.reject(node_1.attributes, attribute_is_namespace);
       var attributes_2 = _.reject(node_2.attributes, attribute_is_namespace);
       result = result && compare_nodelists(attributes_1, attributes_2,opts);
@@ -156,7 +158,7 @@ EquivalentXml = (function(){
   };
 
   var isNodelist = function(node){
-    return node instanceof NodeList || node instanceof NamedNodeMap;
+    return node instanceof NodeList || node instanceof namedNodeMap;
   };
 
   var strip = function(string){
