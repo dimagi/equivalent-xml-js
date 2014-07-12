@@ -35,14 +35,20 @@ EquivalentXml = (function(){
     return (attribute.prefix == "xmlns" || attribute.name == "xmlns") && attribute.namespaceURI == "http://www.w3.org/2000/xmlns/";
   };
 
+  var sort_attributes = function (attributes) {
+    return _.sortBy(attributes, function (a) {
+        return [a.prefix, a.name];
+    });
+  };
+
   var compare_children = function(node_1, node_2, opts){
     var nodelist_1 = as_nodelist(node_1.childNodes, opts);
     var nodelist_2 = as_nodelist(node_2.childNodes, opts);
     var result = compare_nodelists(nodelist_1, nodelist_2, opts);
 
     if(node_1.attributes instanceof namedNodeMap){
-      var attributes_1 = _.reject(node_1.attributes, attribute_is_namespace);
-      var attributes_2 = _.reject(node_2.attributes, attribute_is_namespace);
+      var attributes_1 = sort_attributes(_.reject(node_1.attributes, attribute_is_namespace));
+      var attributes_2 = sort_attributes(_.reject(node_2.attributes, attribute_is_namespace));
       result = result && compare_nodelists(attributes_1, attributes_2,opts);
     }
 
