@@ -1,6 +1,5 @@
-//= require underscore.js
+define(["underscore"], function (_) {
 
-EquivalentXml = (function(){
   var namedNodeMap = (window.NamedNodeMap || window.MozNamedAttrMap || {});
 
   var canonical_name = function(node){
@@ -190,7 +189,7 @@ EquivalentXml = (function(){
     }
   };
 
-  return {
+  var EquivalentXml = {
     isEquivalent: function(node_1, node_2, options){
       var opts = _.clone(this.defaults);
       _.extend(opts,options);
@@ -213,5 +212,7 @@ EquivalentXml = (function(){
         return EquivalentXml.isEquivalent(actual,expected,options);
       }
     },
-  };
-})();
+  }
+
+  return EquivalentXml;
+});
