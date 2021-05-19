@@ -1,4 +1,7 @@
 {
+  "name": "equivalent-xml-js",
+  "version": "0.1.0",
+  "description": "An XML comparison tool",
   "dependencies": {
     "underscore": "^1.13.1"
   },
