@@ -1,4 +1,15 @@
 /*jshint multistr:true */
+let chai = require("chai");
+let requirejs = require("requirejs");
+let EquivalentXml = requirejs("../../../src/equivalent-xml");
+let XML = EquivalentXml.xml;
+let expect = chai.expect;
+
+chai.Assertion.addMethod("beEquivalentTo", EquivalentXml.chai.beEquivalentTo);
+
+global.DOMParser = window.DOMParser;
+global.XMLSerializer = window.XMLSerializer;
+global.CDATASection = window.CDATASection;
 
 describe("EquivalentXml",function(){
 

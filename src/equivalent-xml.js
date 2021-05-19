@@ -212,6 +212,18 @@ define(["underscore"], function (_) {
         return EquivalentXml.isEquivalent(actual,expected,options);
       }
     },
+    chai: {
+      beEquivalentTo: function(expected, options) {
+        var actual = this._obj;
+        this.assert(
+          EquivalentXml.isEquivalent(actual, expected, options),
+          "expected #{act} to be equivalent to #{exp}",
+          "expected #{act} to not be equivalent to #{exp}",
+          toString(expected),
+          toString(actual)
+        )
+      }
+    }
   }
 
   return EquivalentXml;

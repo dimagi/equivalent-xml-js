@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "underscore": "^1.13.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "jsdom": "^16.5.3",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^8.4.0",
+    "requirejs": "^2.3.6"
+  },
+  "scripts": {
+    "test": "mocha -r jsdom-global/register spec/javascripts/EquivalentXmlSpec.js"
+  }
+}

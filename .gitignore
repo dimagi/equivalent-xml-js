@@ -1,2 +1,2 @@
-Gemfile.lock
-build
+/build
+/node_modules
